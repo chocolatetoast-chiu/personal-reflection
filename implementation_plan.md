@@ -33,3 +33,23 @@
 ## Gotchas
 - 原始圖片共約 30 MB；預設 HTTP chunked push 曾回報 400。單次使用 `git -c http.postBuffer=52428800 push` 成功；未改全域 Git 設定。
 - 無執行期依賴；離線開啟仍可閱讀與互動，外部研究網站／Email 連結需網路。
+
+
+## Revision 2（2026-09-13｜Leon 截圖回饋）
+### Goal / Scope / Constraints
+更新標題／首頁文案／三種 tag／neoleon.dev 連結；以生產力工具取代五秒倒數，加入有來源的中文名人引言。只改此網站與本次記憶狀態；原文正文及圖片保留；沿用既有 URL；無新執行依賴。
+### Steps
+- [x] 查證引言與工具官網。
+- [x] 統一文章 metadata、首頁文案及三種分類，移除列表摘要與英文副標題。
+- [x] 建立「卡在哪」互動工具與北極星引言切換。
+- [x] 驗證原文、連結、互動、RWD 與獨立審查。
+- [ ] GitHub 同步及公開內容讀回。
+
+### Revision 2 Verification
+- 靜態：四頁 metadata／三種 tags／無列表摘要／無英文副標／neoleon.dev PASS；三篇正文與九張圖片 SHA-256 不变。
+- Browser：1200／750／390px 無水平溢出；引言按鈕、星芒鍵盤操作與三則循環 PASS。
+- 工具：模板→下一步→專注；空值檢查；計時暫停／續跑／重設／2、10、25 分鐘選擇；實際兩分鐘跨面板到期公告 PASS。
+- 雜念清單→下一步、HTML-like 輸入僅文字、複製共工邀請、tab Home/方向鍵；180 字無空格輸入在390px不溢出 PASS。
+- code-reviewer 兩項 P2 已修：面板外到期通知、長任務文字換行；獨立複核通過。
+- §F 六項 PASS：四類互動（filter／工具說明 details／nav／motion）、CSS variables及無CDN、穩定ID、展開規則（列表摘要依使用者移除，文章目錄仍開）、750/1200 RWD、derived_from footer。
+- 外部連結：neoleon.dev／Magic ToDo／Compiler／Pomofocus 回應200；Focusmate官方頁已由網頁搜尋讀取功能，但獨立HTTP請求遭拒，不宣稱服務可用性，保留本機共工邀請替代。

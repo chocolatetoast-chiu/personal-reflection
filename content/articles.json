@@ -1,12 +1,12 @@
 [
   {
     "slug": "countdown-from-five",
-    "title": "倒數五秒",
+    "title": "那是他們在乎的事情",
     "date": "2026-08-16",
     "tags": [
-      "界線與行動"
+      "拖延與行動"
     ],
-    "excerpt": "即使我不 step in，他們還是會處理好。該做的是研究，以及倒數五秒。",
+    "excerpt": "即使我不介入，他們還是會處理好——因為那是他們認為要緊的事。我想把時間留給自己在乎的研究。",
     "cover": "posts/countdown-keyboard.jpg",
     "body": "<figure class=\"article-cover\">\n    <img src=\"assets/images/posts/countdown-keyboard.jpg\" alt=\"在筆電上打字，螢幕開著一份空白文件\" loading=\"lazy\">\n    <figcaption>腦裡那團東西，不敲進文件裡，心裡那顆石頭就放不下來。Photo: Glenn Carstens-Peters / Unsplash</figcaption>\n  </figure>\n\n  <h2 id=\"sec-writing\">敲下來</h2>\n  <p>不確定寫完會不會更懂自己現在卡在哪。不過自己坐下來打字這件事，我很久沒做了。腦裡那團雜亂，不敲進 Google Docs，心裡那顆石頭就放不下來。數位空間也髒了很久，該清一清，把注意力拉回該做的事。今天想寫的，是昨天和高中朋友聚在一起的那段時間。</p>\n\n  <h2 id=\"sec-friends\">學校附近</h2>\n  <p>昨天幾個高中朋友又約在學校附近碰面。聽他們講各自崗位上的事，我會覺得：啊，大家都開始知道自己要什麼樣的人生，也開始為那個選擇負責。</p>\n  <p>有人就是要保住自己的時間，公司的事他可以全力做，因為下班後那塊獨處能把能量補回來。</p>\n  <p>有人試過把 KPI 衝到最好。可當身邊出現更往工作裡鑽的人，他看清楚哪種生活才適合自己，就選擇放過自己：份內的事做好；多出來、又不是他最想做的，他會用很穩的語氣說，他現在有更要緊的事，這塊暫時接不了。</p>\n  <p>這才是我覺得該學的工作態度；「工作」不只是幫公司產出，還得記得自己在意的是什麼。</p>\n\n  <h2 id=\"sec-yes\">來者不拒</h2>\n  <p>我這陣子剛好相反，新的事情來者不拒；我「自以為」想通了一件事：「這件事情若不是我來做，是不是就沒人做了？」於是就接；短期看起來還行，可那些小事堆起來的煩躁，夠把我想做的研究產出壓垮。</p>\n  <p>對別人來說，甚至對老闆來說，那些他們認定要緊的事，他們自己會想辦法；即使我現在處理不了，時間過去，他們也會意識到、也會動手。</p>\n  <blockquote>即使我不 step in，他們還是會處理好——因為那是「他們」認為要緊的事。</blockquote>\n\n  <h2 id=\"sec-work\">該做的事</h2>\n  <figure>\n    <img src=\"assets/images/posts/countdown-research.jpg\" alt=\"桌上的筆電、圖表草稿與正在核對的手\" loading=\"lazy\">\n  </figure>\n  <p>對我來說該做的，就是把手頭研究做完 critical analysis，把解釋上自己也覺得有洞的實驗補好，把表格、圖表做完，註釋寫清楚，變成論文，然後讓同行來挑。這些才是我該做的事。</p>\n\n  <h2 id=\"sec-five\">減緩拖延症的訣竅</h2>\n  <p>敲鍵盤這件事，不知從何時開始，也變成很難跨出去的第一步；寫這篇的當下，我一直想切到別的分頁、別的視窗，躲開心裡真正想講的話，我就在想：哇噻，連好好坐下寫一篇，都要鼓這麼大的勇氣。</p>\n  <p>倒數五秒，聽過不下百遍；可真掉進泥淖時，我幾乎拿不出這招。</p>\n  <figure>\n    <img src=\"assets/images/posts/countdown-sticky.jpg\" alt=\"鍵盤旁散落的橘色便利貼\" loading=\"lazy\">\n    <figcaption>以後若想逃，而那件事不能逃，就去看這張便利貼。Photo: Unsplash</figcaption>\n  </figure>\n  <p>這篇小日記，我當它是個起點；以後若想逃，而那件事不能逃，我就去看貼在這台電腦上的便利貼，54321，然後開始做。</p>",
     "original_title": "Countdown from Five"
@@ -16,8 +16,7 @@
     "title": "找到我的北極星",
     "date": "2025-01-04",
     "tags": [
-      "自我探索",
-      "人類圖"
+      "自我探索"
     ],
     "excerpt": "透過年度回顧工作坊與人類圖的探索，找到人生使命的那一刻。",
     "cover": "northstar.png",
@@ -29,7 +28,7 @@
     "title": "學會放下的那一年",
     "date": "2024-12-29",
     "tags": [
-      "年度回顧"
+      "回顧"
     ],
     "excerpt": "2024 年度回顧——學會放下掌控、接受不完美。",
     "cover": "smilingme.jpeg",

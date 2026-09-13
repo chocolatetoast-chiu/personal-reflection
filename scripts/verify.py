@@ -46,6 +46,20 @@ if __name__ == '__main__':
             assert target.exists(), f'Missing target: {name} -> {href}'
             if parsed.fragment and target.suffix == '.html':
                 assert unquote(parsed.fragment) in pages[target.name][1].ids, f'Missing anchor: {href}'
+    home = pages['index.html'][0]
+    assert "LEON'S NOTES" in home and "FIELD NOTES" not in home
+    assert '倒數五秒' not in home and '五秒練習' not in home
+    assert '讀一小段' not in home
+    assert {tag for a in articles for tag in a['tags']} == {'回顧', '自我探索', '拖延與行動'}
+    for name, (text, page) in pages.items():
+        assert 'neoleon.in' not in text and 'https://neoleon.dev/' in text
+        assert '<p class="original-title">' not in text
+    quotes = json.loads((ROOT / 'content/quotes.json').read_text())
+    assert len(quotes) >= 3
+    for quote in quotes:
+        assert quote['text'] in home and quote['author'] in home
+        assert quote['url'].startswith('https://')
+    assert articles[0]['title'] == '那是他們在乎的事情'
     for a, source in zip(articles, provenance['articles']):
         body = re.search(r'<article class="article-body">(.*?)</article>', pages[a['slug'] + '.html'][0], re.S).group(1)
         assert normalized(body) == normalized(a['body']), a['slug']

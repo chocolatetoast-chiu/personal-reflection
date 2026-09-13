@@ -62,5 +62,11 @@
   "about_sources": [
     "about.html",
     "assets/js/about-page.js"
+  ],
+  "revisions": [
+    {
+      "date": "2026-09-13",
+      "changes": "依作者要求將 Countdown from Five 的顯示標題改為「那是他們在乎的事情」；更新摘要及標籤，正文與圖片未改。"
+    }
   ]
 }

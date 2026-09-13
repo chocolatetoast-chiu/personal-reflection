@@ -224,10 +224,19 @@ document.querySelectorAll('.reveal').forEach(el => {
 @media(max-width:620px){html{scroll-padding-top:100px}.wrap{width:calc(100% - 40px)}.nav-inner{min-height:76px;gap:8px}.brand{font-size:17px}.nav-links{gap:16px;font-size:12px}.nav-links .external{display:none}.hero{grid-template-columns:1fr;padding:40px 0 30px;gap:25px}.hero h1{font-size:clamp(32px,10.4vw,51px)}.hero .intro{font-size:15px}.hero-actions{margin-top:26px}.compass-art{width:80%;max-width:340px;justify-self:center}.compass-caption{bottom:0}.compass-caption strong{font-size:17px}.hero .eyebrow{font-size:10px}.section{padding:38px 0}.section-heading{display:block}.section-heading h2{font-size:31px}.section-heading p{margin-top:10px}.section-rule{font-size:10px}.feature{grid-template-columns:1fr;gap:26px}.feature h2{font-size:35px;margin-top:12px}.feature .text-link{margin-top:18px}.note-row{grid-template-columns:1fr 85px;gap:14px;position:relative;padding-top:44px}.note-year{position:absolute;top:17px;left:0;font-size:17px}.note-row img{width:85px;height:90px}.note-copy h3{font-size:23px}.note-copy .tag{font-size:10px}.pill{padding:6px 13px}.practice{grid-template-columns:1fr;gap:30px;padding:45px 0}.practice h2{font-size:33px}.countdown{padding:24px}.about{padding:45px 0}.about-inner{grid-template-columns:1fr;gap:28px}.about img{width:140px;height:175px}.about h2{font-size:32px}.article-header{padding-top:36px}.article-header h1{font-size:38px}.article-grid{display:flex;flex-direction:column;gap:24px}.article-sidebar{position:static;width:100%;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0}.article-toc{grid-template-columns:1fr 1fr}.reading-tools{display:flex;align-items:center;gap:15px;margin-top:8px;padding-top:10px}.reading-tools .pills{margin:0}.article-body{font-size:17px;line-height:2}.article-body blockquote{font-size:21px;padding:10px 18px}.article-body h2{font-size:25px;margin-top:40px}.article-body.large{font-size:20px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 @media print{.site-nav,.article-sidebar,.reading-progress,.article-bottom,.hero-actions,.countdown{display:none}body{background:white}.wrap{width:100%}.article-grid{display:block}.article-body{font-size:12pt}.article-body img{max-height:350px}.article-body h2{break-after:avoid}}
+
+/* Quotes sit below the compass in normal flow, including longer translations. */
+.hero{grid-template-columns:1.13fr 1fr;gap:40px;min-height:640px}.hero .intro{max-width:450px}.compass-art{display:flex;flex-direction:column;aspect-ratio:auto;align-self:center;width:100%}.compass-art svg{max-width:370px;margin:auto}.compass-art .star{transform-origin:240px 230px}.compass-center{inset:10% 24% 46%;color:transparent}.compass-caption{position:static;min-height:165px;max-width:420px;width:100%;text-align:center;align-self:center}.quote-card{margin:0;padding:0 10px}.quote-card blockquote{font:21px/1.8 var(--serif);color:var(--accent);margin:0 0 12px;text-wrap:pretty}.quote-card figcaption{font-size:12px;line-height:1.8;color:var(--muted)}.quote-card cite{display:block;font-size:11px;font-style:normal}.quote-card cite a{text-decoration:underline;text-underline-offset:3px}.quote-controls{display:flex;justify-content:center;align-items:center;gap:16px;margin-top:10px}.quote-controls button{min-height:40px;font-size:12px;padding:5px 10px;color:var(--muted)}.quote-controls button:hover{color:var(--accent)}.quote-controls .mono{font-size:10px}.feature h2{font-size:39px}.note-row{padding-top:32px;padding-bottom:32px}.note-copy h3{margin:12px 0}.productivity{padding-top:75px;padding-bottom:65px}.productivity .section-heading h2{font-size:39px;margin-top:8px}.tool-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--border);gap:0}.tool-tabs button{text-align:left;padding:20px 12px;border-bottom:3px solid transparent;font-size:16px;transition:color .2s,border-color .2s}.tool-tabs button span{font:11px var(--mono);margin-right:12px;color:var(--muted)}.tool-tabs button[aria-selected="true"]{border-bottom-color:var(--accent);color:var(--accent);background:#a3482509}.tool-tabs button:hover{color:var(--accent)}.tool-panel{display:grid;grid-template-columns:.8fr 1.2fr;gap:65px;padding:40px 0 20px;min-height:475px}.tool-symbol{font:58px/1 Georgia,serif;color:var(--accent);display:block;margin:0 0 14px}.tool-explain h3{font-size:30px;line-height:1.6;margin-bottom:20px}.tool-explain p{font-size:15px;color:var(--muted);line-height:2}.tool-explain details{margin-top:16px}.tool-workspace{padding:30px;border:1px solid var(--border);background:#f3efe580;min-width:0}.tool-workspace label{display:block;font-size:13px;margin:0 0 8px}.tool-workspace input,.tool-workspace textarea,.tool-workspace select{display:block;width:100%;max-width:100%;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:3px;padding:11px 12px;font:15px/1.6 var(--sans)}.tool-workspace input{margin-bottom:20px}.tool-workspace textarea{resize:vertical;margin-bottom:18px;min-height:125px}.tool-workspace input:focus,.tool-workspace textarea:focus{outline:2px solid var(--accent);outline-offset:2px}.tool-workspace input::placeholder,.tool-workspace textarea::placeholder{color:#746e63}.step-examples{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 22px;font-size:12px;color:var(--muted)}.step-examples button{padding:5px 10px;border:1px solid var(--border);border-radius:16px;min-height:34px;font-size:12px}.step-examples button:hover{border-color:var(--accent);color:var(--accent)}.tool-resource{display:block;border-top:1px solid var(--border);margin-top:26px;padding:16px 0 0;line-height:1.8}.tool-resource strong{font-size:13px;font-weight:500;color:var(--text);display:block}.tool-resource span{font-size:12px;color:var(--muted)}.tool-resource:hover strong{color:var(--accent)}.tool-status{font-size:13px;color:var(--muted);line-height:1.8;min-height:24px;margin-top:18px}.focus-layout{display:grid;grid-template-columns:145px 1fr;gap:25px;align-items:center;margin-top:28px}.focus-ring{--progress:0%;position:relative;width:145px;height:145px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:conic-gradient(var(--accent) var(--progress),var(--border) 0);border-radius:50%}.focus-ring::before{content:'';position:absolute;inset:2px;border-radius:50%;background:var(--surface)}.focus-ring span,.focus-ring small{position:relative}.focus-ring span{font:35px var(--mono);letter-spacing:-.08em}.focus-ring small{font-size:10px;color:var(--muted);margin-top:8px}.focus-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:18px}.focus-controls .button{padding:8px 25px;min-height:42px}.text-button{font-size:12px;min-height:38px;text-decoration:underline;text-underline-offset:4px}.tool-workspace select{font-size:13px;padding:8px}.timer-return{display:block;padding:8px 14px;border-left:3px solid var(--accent);font:12px/1.7 var(--mono);margin-top:18px;text-align:left}.parking-list{margin:0;padding:0;list-style:none}.parking-list li{display:flex;gap:16px;justify-content:space-between;border-top:1px solid var(--border);padding:12px 0;align-items:baseline}.parking-list span{font-size:14px;overflow-wrap:anywhere;min-width:0}.parking-list button{white-space:nowrap;color:var(--accent);font-size:12px;min-height:36px}.buddy-message{font:19px/2 var(--serif);margin:18px 0 24px;color:var(--text);user-select:text}.tool-footnote{font-size:11px;color:var(--muted);text-align:right;margin-top:14px}.tool-workspace details{margin-top:18px;border-top:1px solid var(--border);padding-top:8px}
+@media(max-width:1000px){.hero{gap:24px}.tool-panel{gap:35px;grid-template-columns:.85fr 1.15fr}.tool-workspace{padding:24px}.focus-layout{grid-template-columns:1fr;gap:22px}.focus-ring{width:125px;height:125px}.tool-tabs button{padding:16px 8px;font-size:14px}.tool-tabs button span{margin-right:8px}.compass-caption{min-height:190px}.feature h2{font-size:34px}}
+@media(max-width:750px){.hero{min-height:580px}.compass-art svg{max-width:300px}.quote-card blockquote{font-size:19px}.tool-panel{grid-template-columns:1fr;gap:25px;padding-top:28px}.tool-explain h3 br{display:none}.tool-explain h3{font-size:29px;margin-bottom:12px}.tool-symbol{display:none}.tool-explain p{max-width:600px}.tool-workspace{padding:25px}.focus-layout{grid-template-columns:145px 1fr}.tool-footnote{text-align:left}.productivity{padding-top:50px;padding-bottom:45px}}
+@media(max-width:620px){.hero{grid-template-columns:1fr;padding-bottom:24px;gap:22px}.compass-art{width:100%;max-width:360px}.compass-art svg{max-width:290px}.compass-caption{min-height:170px}.compass-center{inset:8% 24% 43%}.quote-card blockquote{font-size:20px}.productivity .section-heading h2{font-size:31px}.tool-tabs{grid-template-columns:1fr 1fr;gap:3px}.tool-tabs button{padding:13px 8px}.tool-panel{min-height:0}.tool-workspace{padding:21px}.tool-explain h3{font-size:26px}.feature h2{font-size:32px}.note-row{padding-top:45px}.focus-layout{grid-template-columns:1fr;gap:22px}.focus-ring{width:145px;height:145px;margin:auto}.tool-workspace .button{max-width:100%;font-size:13px;padding:10px 20px}.buddy-message{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.compass-art .star{transition:none!important}}
+
+.tool-status,.timer-announcement{overflow-wrap:anywhere}.timer-announcement{font-size:14px;color:var(--accent);margin:12px 0 0}.timer-announcement:empty{margin:0}.tool-workspace{overflow-wrap:anywhere}
 </style></head><body class="with-grain">
 <a href="#main" class="skip">跳到主要內容</a><div class="reading-progress" aria-hidden="true"></div>
-<header class="site-nav"><nav class="wrap nav-inner" aria-label="主要導覽"><a class="brand" href="index.html">LEON <em>／</em> 手記</a><div class="nav-links"><a href="index.html#notes">手記</a><a href="index.html#practice">五秒練習</a><a href="index.html#about">關於我</a><a class="external" href="https://neoleon.in/">研究與作品 ↗</a></div></nav></header>
-<main id="main" class="wrap"><header class="article-header fade-in"><a class="eyebrow" href="index.html#notes">← 回到手記收藏</a><h1>找到我的北極星</h1><p class="original-title">Finding My North Star</p><p class="eyebrow"><time datetime="2025-01-04">2025-01-04</time> ／ 自我探索・人類圖</p></header>
+<header class="site-nav"><nav class="wrap nav-inner" aria-label="主要導覽"><a class="brand" href="index.html">LEON <em>／</em> 手記</a><div class="nav-links"><a href="index.html#notes">手記</a><a href="index.html#practice">卡住的時候</a><a href="index.html#about">關於我</a><a class="external" href="https://neoleon.dev/">研究與作品 ↗</a></div></nav></header>
+<main id="main" class="wrap"><header class="article-header fade-in"><a class="eyebrow" href="index.html#notes">← 回到手記收藏</a><h1>找到我的北極星</h1><p class="eyebrow"><time datetime="2025-01-04">2025-01-04</time> ／ 自我探索</p></header>
 <div class="article-grid"><aside class="article-sidebar"><details open><summary>這篇的段落</summary><nav class="article-toc" aria-label="文章目錄"><a href="#sec-workshop">工作坊</a><a href="#sec-compass">Life Compass</a><a href="#sec-humandesign">人類圖</a><a href="#sec-mission">使命</a></nav></details><div class="reading-tools"><p class="eyebrow">閱讀字級</p><div class="pills" role="group" aria-label="閱讀字級"><button class="pill active" data-size="normal" aria-pressed="true">標準</button><button class="pill" data-size="large" aria-pressed="false">放大</button></div></div></aside><article class="article-body"><blockquote>今天發生的一切，將至今所有懷疑沮喪都做一個總結。</blockquote>
 
   <figure class="article-cover">
@@ -262,7 +271,7 @@ document.querySelectorAll('.reveal').forEach(el => {
 
   <p>這句話在心中產生巨大的回響，彷彿這幾年來，經歷的那些高峰與低谷，那些掙扎與困惑，所有的一切，似乎都是為了今天這一刻，讓我明白：我的人生使命，就是「<strong>用愛與真誠，真實且善良地與世界連結，成為那個傳遞溫暖的人。</strong>」；我感覺，這個答案終於安穩地落在了我的心上。</p>
 
-  <p>在最後，我對自己說：未來的每一天，無論我使用什麼工具、無論我選擇什麼道路，我希望我的每一個行動、每一個想法，都能夠將我的手指，指向那顆「北極星」——將愛、真誠與善良，真實地傳達給這個世界。</p></article></div><nav class="article-bottom" aria-label="其他手記"><a href="index.html#notes">← 全部手記</a><a href="countdown-from-five.html">倒數五秒 ↗</a><a href="the-year-i-learned-to-let-go.html">學會放下的那一年 ↗</a></nav></main>
+  <p>在最後，我對自己說：未來的每一天，無論我使用什麼工具、無論我選擇什麼道路，我希望我的每一個行動、每一個想法，都能夠將我的手指，指向那顆「北極星」——將愛、真誠與善良，真實地傳達給這個世界。</p></article></div><nav class="article-bottom" aria-label="其他手記"><a href="index.html#notes">← 全部手記</a><a href="countdown-from-five.html">那是他們在乎的事情 ↗</a><a href="the-year-i-learned-to-let-go.html">學會放下的那一年 ↗</a></nav></main>
 <footer class="site-footer"><div class="wrap"><div class="footer-inner"><span>© 2026 邱聖傑 Leon Chiu</span><span>生活・研究・自己</span><a href="#main">回到頁首 ↑</a></div><p class="provenance">derived_from: <a href="content/articles.json">content/articles.json</a> · <a href="content/provenance.json">來源紀錄</a></p></div></footer>
 <script>'use strict';
 function applyFilter() {
@@ -294,44 +303,6 @@ function toggleCard(button) {
   target.hidden = !open;
 }
 document.querySelectorAll('[data-disclosure]').forEach(button => button.addEventListener('click', () => toggleCard(button)));
-const compass = document.querySelector('.compass-center');
-compass?.addEventListener('click', () => {
-  const open = compass.getAttribute('aria-expanded') !== 'true';
-  compass.setAttribute('aria-expanded', String(open));
-  compass.closest('.compass-art').classList.toggle('is-open', open);
-  const caption = document.getElementById('compass-caption');
-  caption.innerHTML = open ? '<strong>用愛與真誠，真實且善良地與世界連結。</strong><span>摘自〈找到我的北極星〉</span>' : '<strong>我的北極星</strong><span>點一下星芒，讀一句提醒</span>';
-});
-const countStart = document.querySelector('#count-start');
-if (countStart) {
-  const digit = document.querySelector('#count-digit');
-  const output = document.querySelector('#count-status');
-  const ticks = [...document.querySelectorAll('.tick-line i')];
-  let timer = null;
-  function reset() {
-    clearInterval(timer); timer = null;
-    digit.textContent = '5'; output.textContent = '先想一件，現在就能開始的小事。';
-    countStart.disabled = false; countStart.textContent = '開始倒數 ↗';
-    ticks.forEach(tick => tick.classList.remove('lit'));
-  }
-  countStart.addEventListener('click', () => {
-    clearInterval(timer);
-    const deadline = Date.now() + 5000;
-    countStart.disabled = true; countStart.textContent = '倒數中';
-    output.textContent = '把注意力，放回眼前這件事。';
-    timer = setInterval(() => {
-      const remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
-      digit.textContent = String(remaining);
-      ticks.forEach((tick, index) => tick.classList.toggle('lit', index >= remaining));
-      if (!remaining) {
-        clearInterval(timer); timer = null;
-        output.textContent = '現在，開始做。'; countStart.disabled = false; countStart.textContent = '再倒數一次 ↗';
-      }
-    }, 100);
-    digit.textContent = '5'; ticks.forEach(tick => tick.classList.remove('lit'));
-  });
-  document.querySelector('#count-reset').addEventListener('click', reset);
-}
 function switchMetric(button) {
   document.querySelector('.article-body')?.classList.toggle('large', button.dataset.size === 'large');
   document.querySelectorAll('[data-size]').forEach(item => {
@@ -354,4 +325,169 @@ if (progress && article) {
   window.addEventListener('load', update);
   update();
 }
+
+// Page-local tools: no network requests and no persistent storage.
+(() => {
+  const root = document.getElementById('practice');
+  if (!root) return;
+  const tabs = [...root.querySelectorAll('[data-tool]')];
+  const returnButton = document.getElementById('timer-return');
+  let selectedTool = 'small';
+  let timerState = 'idle';
+  let remaining = 120000;
+  let total = remaining;
+  let deadline = 0;
+  let interval = null;
+  const duration = document.getElementById('focus-duration');
+  const task = document.getElementById('focus-task');
+  const start = document.getElementById('focus-start');
+  const status = document.getElementById('focus-status');
+  const clock = document.getElementById('focus-clock');
+  const ring = document.getElementById('focus-ring');
+  function showTool(id, focus = false) {
+    selectedTool = id;
+    tabs.forEach(tab => {
+      const selected = tab.dataset.tool === id;
+      tab.setAttribute('aria-selected', String(selected));
+      tab.tabIndex = selected ? 0 : -1;
+      document.getElementById(tab.getAttribute('aria-controls')).hidden = !selected;
+      if (selected && focus) tab.focus();
+    });
+    drawTimer();
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => showTool(tab.dataset.tool));
+    tab.addEventListener('keydown', event => {
+      let next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+      else if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = tabs.length - 1;
+      else return;
+      event.preventDefault(); showTool(tabs[next].dataset.tool, true);
+    });
+  });
+  function drawTimer() {
+    const seconds = Math.ceil(remaining / 1000);
+    const display = `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+    clock.textContent = display;
+    ring.style.setProperty('--progress', `${Math.max(0, Math.min(100, (total - remaining) / total * 100))}%`);
+    const active = timerState !== 'idle';
+    returnButton.hidden = selectedTool === 'focus' || !active;
+    returnButton.textContent = `${timerState === 'done' ? '這一段已完成' : timerState === 'paused' ? '計時已暫停' : '正在專注'} · ${display} · 回到計時 ↗`;
+  }
+  function tick() {
+    if (timerState !== 'running') return;
+    remaining = Math.max(0, deadline - Date.now());
+    if (remaining === 0) {
+      clearInterval(interval); interval = null; timerState = 'done';
+      start.textContent = '再做一輪'; duration.disabled = false; task.readOnly = false;
+      status.textContent = '你可以停下來，也可以再選一小步。';
+      document.getElementById('timer-announcement').textContent = '這一小段專注時間結束了。';
+    }
+    drawTimer();
+  }
+  function resetTimer() {
+    clearInterval(interval); interval = null; timerState = 'idle';
+    remaining = Number(duration.value) * 1000; total = remaining;
+    document.getElementById('timer-announcement').textContent = '';
+    duration.disabled = false; task.readOnly = false; start.textContent = '開始';
+    status.textContent = '時間到了，可以停，也可以再做一小段。';
+    drawTimer();
+  }
+  start.addEventListener('click', () => {
+    if (timerState === 'running') {
+      tick();
+      if (timerState === 'done') return;
+      clearInterval(interval); interval = null; timerState = 'paused';
+      start.textContent = '繼續'; status.textContent = '已暫停，準備好再繼續。'; drawTimer(); return;
+    }
+    if (!task.value.trim()) { task.value = ''; task.reportValidity(); return; }
+    if (timerState === 'idle' || timerState === 'done') {
+      remaining = Number(duration.value) * 1000; total = remaining;
+    }
+    document.getElementById('timer-announcement').textContent = '';
+    deadline = Date.now() + remaining; timerState = 'running';
+    duration.disabled = true; task.readOnly = true; start.textContent = '暫停';
+    status.textContent = `這段時間只做：${task.value.trim()}`;
+    clearInterval(interval); interval = setInterval(tick, 250); tick();
+  });
+  duration.addEventListener('change', resetTimer);
+  document.getElementById('focus-reset').addEventListener('click', resetTimer);
+  document.addEventListener('visibilitychange', tick);
+  window.addEventListener('pageshow', tick);
+  returnButton.addEventListener('click', () => showTool('focus', true));
+  const examples = {
+    '寫作': ['寫完一份報告', '打開文件，先寫一個小標題'],
+    '資料': ['整理資料', '打開資料表，先核對第一列'],
+    '生活': ['整理房間', '把桌上的一件物品放回原位']
+  };
+  root.querySelectorAll('[data-example]').forEach(button => button.addEventListener('click', () => {
+    const [big, small] = examples[button.dataset.example];
+    document.getElementById('big-task').value = big;
+    document.getElementById('small-step').value = small;
+  }));
+  function bringStep(text) {
+    if (timerState === 'running' || timerState === 'paused') {
+      showTool('focus', true);
+      status.textContent = '還有一段計時沒結束。請先完成或重設，再換下一件事。';
+      return;
+    }
+    resetTimer(); task.value = text; showTool('focus', true); task.focus();
+  }
+  document.getElementById('use-step').addEventListener('click', () => {
+    const input = document.getElementById('small-step');
+    if (!input.value.trim()) { input.value = ''; input.reportValidity(); return; }
+    bringStep(input.value.trim());
+  });
+  document.getElementById('park-thoughts').addEventListener('click', () => {
+    const input = document.getElementById('brain-dump');
+    const lines = input.value.split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+    const message = document.getElementById('parking-status');
+    if (!lines.length) { message.textContent = '先寫下一件正在佔著腦袋的事。'; input.focus(); return; }
+    const list = document.getElementById('parking-list');
+    list.replaceChildren();
+    lines.forEach(line => {
+      const row = document.createElement('li');
+      const text = document.createElement('span'); text.textContent = line;
+      const button = document.createElement('button'); button.type = 'button'; button.textContent = '先做這件 ↗';
+      button.setAttribute('aria-label', `先做這件：${line}`);
+      button.addEventListener('click', () => {
+        document.getElementById('big-task').value = line.slice(0, 180);
+        document.getElementById('small-step').value = '';
+        showTool('small', true); document.getElementById('small-step').focus();
+      });
+      row.append(text, button); list.append(row);
+    });
+    message.textContent = `已放下 ${lines.length} 件事。選一件，把下一步寫小一點。`;
+  });
+  document.getElementById('copy-invite').addEventListener('click', async () => {
+    const text = document.getElementById('buddy-message').textContent;
+    const result = document.getElementById('copy-status');
+    try {
+      await navigator.clipboard.writeText(text);
+      result.textContent = '已複製，貼給你想一起開工的人。';
+    } catch {
+      result.textContent = '這個瀏覽器無法自動複製，請選取上方文字後複製。';
+    }
+  });
+})();
+
+(() => {
+  const cards = [...document.querySelectorAll('[data-quote]')];
+  if (!cards.length) return;
+  const position = document.getElementById('quote-position');
+  const star = document.querySelector('.compass-art .star');
+  let index = 0;
+  let turns = 0;
+  function nextQuote() {
+    index = (index + 1) % cards.length;
+    cards.forEach((card, i) => { card.hidden = i !== index; });
+    position.textContent = `${String(index + 1).padStart(2, '0')} / ${String(cards.length).padStart(2, '0')}`;
+    turns++;
+    star.style.transform = `rotate(${turns * 45}deg)`;
+  }
+  document.querySelector('.compass-center').addEventListener('click', nextQuote);
+  document.getElementById('quote-next').addEventListener('click', nextQuote);
+})();
 </script></body></html>

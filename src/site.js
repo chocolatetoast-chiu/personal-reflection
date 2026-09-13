@@ -28,44 +28,6 @@ function toggleCard(button) {
   target.hidden = !open;
 }
 document.querySelectorAll('[data-disclosure]').forEach(button => button.addEventListener('click', () => toggleCard(button)));
-const compass = document.querySelector('.compass-center');
-compass?.addEventListener('click', () => {
-  const open = compass.getAttribute('aria-expanded') !== 'true';
-  compass.setAttribute('aria-expanded', String(open));
-  compass.closest('.compass-art').classList.toggle('is-open', open);
-  const caption = document.getElementById('compass-caption');
-  caption.innerHTML = open ? '<strong>用愛與真誠，真實且善良地與世界連結。</strong><span>摘自〈找到我的北極星〉</span>' : '<strong>我的北極星</strong><span>點一下星芒，讀一句提醒</span>';
-});
-const countStart = document.querySelector('#count-start');
-if (countStart) {
-  const digit = document.querySelector('#count-digit');
-  const output = document.querySelector('#count-status');
-  const ticks = [...document.querySelectorAll('.tick-line i')];
-  let timer = null;
-  function reset() {
-    clearInterval(timer); timer = null;
-    digit.textContent = '5'; output.textContent = '先想一件，現在就能開始的小事。';
-    countStart.disabled = false; countStart.textContent = '開始倒數 ↗';
-    ticks.forEach(tick => tick.classList.remove('lit'));
-  }
-  countStart.addEventListener('click', () => {
-    clearInterval(timer);
-    const deadline = Date.now() + 5000;
-    countStart.disabled = true; countStart.textContent = '倒數中';
-    output.textContent = '把注意力，放回眼前這件事。';
-    timer = setInterval(() => {
-      const remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
-      digit.textContent = String(remaining);
-      ticks.forEach((tick, index) => tick.classList.toggle('lit', index >= remaining));
-      if (!remaining) {
-        clearInterval(timer); timer = null;
-        output.textContent = '現在，開始做。'; countStart.disabled = false; countStart.textContent = '再倒數一次 ↗';
-      }
-    }, 100);
-    digit.textContent = '5'; ticks.forEach(tick => tick.classList.remove('lit'));
-  });
-  document.querySelector('#count-reset').addEventListener('click', reset);
-}
 function switchMetric(button) {
   document.querySelector('.article-body')?.classList.toggle('large', button.dataset.size === 'large');
   document.querySelectorAll('[data-size]').forEach(item => {

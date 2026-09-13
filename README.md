@@ -12,7 +12,8 @@
 
 - `content/articles.json`：全文、標題、日期與分類的內容來源。
 - `content/provenance.json`：原網站來源位置、SHA-256 與配圖清單。
-- `src/`：首頁模板、樣式、互動與 SecondBrain motion primitives 快照。
+- `src/`：首頁模板、樣式、互動工具與 SecondBrain motion primitives 快照。
+- `content/quotes.json`：三則北極星引言、作者、作品、來源與翻譯標記。
 - `scripts/build.py`：以 Python 標準函式庫生成四個靜態頁面。執行 `python3 scripts/build.py`，將生成結果一同提交。
 - `scripts/verify.py`：完整性及內部連結檢查，執行 `python3 scripts/verify.py`。
 
@@ -22,7 +23,7 @@
 
 | 原文章 | 中文顯示標題 | 日期 |
 | --- | --- | --- |
-| Countdown from Five | 倒數五秒 | 2026-08-16 |
+| Countdown from Five（原題） | 那是他們在乎的事情 | 2026-08-16 |
 | Finding My North Star | 找到我的北極星 | 2025-01-04 |
 | The Year I Learned to Let Go | 學會放下的那一年 | 2024-12-29 |
 
@@ -35,3 +36,14 @@
 使用獨立的 `personal-reflection` repository，Pages 設定為從 `main` 分支的根目錄發布。`.nojekyll` 保持純靜態檔案部署。
 
 文章與個人照片歸原作者所有，照片原有署名保留；本次未新增開源授權。
+
+
+## 2026-09-13 更新
+
+- 第一篇改題〈那是他們在乎的事情〉，全文不動，沿用原網址。
+- 列表移除摘要，文章頁不顯示英文副標題。分類只留「回顧」「自我探索」「拖延與行動」。
+- 研究與作品連結更新為 `https://neoleon.dev/`。
+- 「卡住的時候」提供小步驟、2／10／25 分鐘計時、雜念清單與共工邀請；輸入只在分頁記憶體中，不發送、不持久儲存。
+- 外部工具：[Magic ToDo](https://goblin.tools/ToDo)、[Pomofocus](https://pomofocus.io/)、[Compiler](https://goblin.tools/Compiler)、[Focusmate](https://www.focusmate.com/)。官網功能於 2026-09-13 查核，未代替使用者註冊或提交內容。
+- 起步設計參考 [James Clear 兩分鐘法則](https://jamesclear.com/how-to-stop-procrastinating)。計時工具的 10 分鐘選項為本站設計，未宣稱療效。
+- 未來分類候選：人際與界線、生活節奏；先不新增空分類。
