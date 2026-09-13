@@ -1,0 +1,215 @@
+/**
+ * html_motion_primitives.css — SSOT for shared motion / layout language
+ *
+ * Agent MUST copy this block INLINE into each self-contained HTML shell.
+ * Do NOT <link> at runtime (no external CSS; shells stay offline-safe).
+ *
+ * Theme palettes live in each shell's :root (research = dark blue; career = Morandi).
+ * Variable NAMES below are required by html-interactivity-spec.mdc.
+ */
+
+/* ── Required keyframes (spec) ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse  { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@keyframes barGrow { from { width: 0; } to { width: var(--w); } }
+@keyframes flowLine { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+
+/* ── Extended motion (Morandi ↔ Research shared) ── */
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(2deg); } }
+@keyframes floatSlow { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(8px, -10px); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes drawRing { from { stroke-dashoffset: var(--circ); } to { stroke-dashoffset: var(--offset); } }
+@keyframes needleIn { from { transform: rotate(-120deg); } to { transform: rotate(var(--needle)); } }
+@keyframes softGlow { 0%, 100% { opacity: .35; } 50% { opacity: .65; } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ── Grain overlay ── */
+body.with-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* ── Reveal on scroll ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── Sticky top nav (blur pills) ── */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: .5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.top-nav::-webkit-scrollbar { display: none; }
+.nav-pill {
+  flex-shrink: 0;
+  padding: .32rem .7rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .35s cubic-bezier(.4, 0, .2, 1);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.nav-pill:hover,
+.nav-pill:focus-visible {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.nav-pill.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.dark-toggle {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all .35s cubic-bezier(.4, 0, .2, 1);
+  color: var(--text);
+}
+.dark-toggle:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+/* ── Hero blobs / geometry ── */
+.hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: .4;
+  animation: floatSlow 14s ease-in-out infinite;
+}
+.blob-1 { width: 380px; height: 380px; background: var(--accent); top: -10%; left: -8%; }
+.blob-2 { width: 280px; height: 280px; background: var(--muted); bottom: 0; right: -6%; opacity: .2; animation-delay: -4s; }
+.blob-3 { width: 180px; height: 180px; background: var(--accent); top: 42%; left: 58%; opacity: .22; animation-delay: -7s; }
+.geo {
+  position: absolute;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  animation: float 10s ease-in-out infinite;
+}
+.geo-r { width: 72px; height: 72px; border-radius: 50%; top: 16%; right: 12%; }
+.geo-s { width: 48px; height: 48px; top: 58%; left: 10%; transform: rotate(45deg); animation-delay: -3s; }
+.geo-l {
+  width: 110px; height: 2px; top: 26%; left: 16%; border: none;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: .5;
+}
+
+/* ── Cards / quote / callout / section chip ── */
+.card-lift {
+  transition: transform .35s cubic-bezier(.4, 0, .2, 1), box-shadow .35s, border-color .35s;
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+.section-title .num,
+.chip-num {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  padding: .2rem .5rem;
+  border-radius: 6px;
+}
+.quote-block {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.65;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--accent) 10%, transparent));
+  position: relative;
+  overflow: hidden;
+}
+.quote-block::before {
+  content: "“";
+  position: absolute;
+  top: -.2rem;
+  left: .6rem;
+  font-size: 4rem;
+  color: var(--accent);
+  opacity: .35;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+.callout-accent {
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 1rem 1.15rem;
+  border-radius: 0 14px 14px 0;
+  margin: 1rem 0;
+  font-size: .9rem;
+}
+
+/* ── Progress ring + eval bars ── */
+.progress-ring { width: 56px; height: 56px; }
+.progress-ring-bg { fill: none; stroke: var(--border); stroke-width: 5; }
+.progress-ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .45s;
+}
+.bar { height: 6px; background: color-mix(in srgb, var(--bg) 80%, var(--border)); border-radius: 4px; overflow: hidden; }
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 60%, #fff));
+  width: 0;
+  animation: barGrow 1.2s .3s forwards;
+}
+
+/* ── Shared init snippet (paste into <script>) ──
+document.querySelectorAll('.reveal').forEach(el => {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: .12 }).observe(el);
+});
+*/

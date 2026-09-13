@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>找到我的北極星｜Leon 的生活手記</title><meta name="description" content="透過年度回顧工作坊與人類圖的探索，找到人生使命的那一刻。">
+<meta name="theme-color" content="#e8e4d8"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23e8e4d8'/%3E%3Cpath d='M16 3L19 13L29 16L19 19L16 29L13 19L3 16L13 13Z' fill='%23a34825'/%3E%3C/svg%3E">
+<style>/**
+ * html_motion_primitives.css — SSOT for shared motion / layout language
+ *
+ * Agent MUST copy this block INLINE into each self-contained HTML shell.
+ * Do NOT <link> at runtime (no external CSS; shells stay offline-safe).
+ *
+ * Theme palettes live in each shell's :root (research = dark blue; career = Morandi).
+ * Variable NAMES below are required by html-interactivity-spec.mdc.
+ */
+
+/* ── Required keyframes (spec) ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse  { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+@keyframes barGrow { from { width: 0; } to { width: var(--w); } }
+@keyframes flowLine { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+
+/* ── Extended motion (Morandi ↔ Research shared) ── */
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(-12px) rotate(2deg); } }
+@keyframes floatSlow { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(8px, -10px); } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes drawRing { from { stroke-dashoffset: var(--circ); } to { stroke-dashoffset: var(--offset); } }
+@keyframes needleIn { from { transform: rotate(-120deg); } to { transform: rotate(var(--needle)); } }
+@keyframes softGlow { 0%, 100% { opacity: .35; } 50% { opacity: .65; } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(16px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes scaleIn { from { opacity: 0; transform: scale(.94); } to { opacity: 1; transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* ── Grain overlay ── */
+body.with-grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+}
+
+/* ── Reveal on scroll ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── Sticky top nav (blur pills) ── */
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: .5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.top-nav::-webkit-scrollbar { display: none; }
+.nav-pill {
+  flex-shrink: 0;
+  padding: .32rem .7rem;
+  border-radius: 999px;
+  font-size: .78rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all .35s cubic-bezier(.4, 0, .2, 1);
+  white-space: nowrap;
+  text-decoration: none;
+}
+.nav-pill:hover,
+.nav-pill:focus-visible {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.nav-pill.active {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.dark-toggle {
+  margin-left: auto;
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all .35s cubic-bezier(.4, 0, .2, 1);
+  color: var(--text);
+}
+.dark-toggle:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+}
+
+/* ── Hero blobs / geometry ── */
+.hero-bg { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: .4;
+  animation: floatSlow 14s ease-in-out infinite;
+}
+.blob-1 { width: 380px; height: 380px; background: var(--accent); top: -10%; left: -8%; }
+.blob-2 { width: 280px; height: 280px; background: var(--muted); bottom: 0; right: -6%; opacity: .2; animation-delay: -4s; }
+.blob-3 { width: 180px; height: 180px; background: var(--accent); top: 42%; left: 58%; opacity: .22; animation-delay: -7s; }
+.geo {
+  position: absolute;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  animation: float 10s ease-in-out infinite;
+}
+.geo-r { width: 72px; height: 72px; border-radius: 50%; top: 16%; right: 12%; }
+.geo-s { width: 48px; height: 48px; top: 58%; left: 10%; transform: rotate(45deg); animation-delay: -3s; }
+.geo-l {
+  width: 110px; height: 2px; top: 26%; left: 16%; border: none;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: .5;
+}
+
+/* ── Cards / quote / callout / section chip ── */
+.card-lift {
+  transition: transform .35s cubic-bezier(.4, 0, .2, 1), box-shadow .35s, border-color .35s;
+}
+.card-lift:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+.section-title .num,
+.chip-num {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 14%, transparent);
+  padding: .2rem .5rem;
+  border-radius: 6px;
+}
+.quote-block {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.65;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--surface), color-mix(in srgb, var(--accent) 10%, transparent));
+  position: relative;
+  overflow: hidden;
+}
+.quote-block::before {
+  content: "“";
+  position: absolute;
+  top: -.2rem;
+  left: .6rem;
+  font-size: 4rem;
+  color: var(--accent);
+  opacity: .35;
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+.callout-accent {
+  border-left: 3px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  padding: 1rem 1.15rem;
+  border-radius: 0 14px 14px 0;
+  margin: 1rem 0;
+  font-size: .9rem;
+}
+
+/* ── Progress ring + eval bars ── */
+.progress-ring { width: 56px; height: 56px; }
+.progress-ring-bg { fill: none; stroke: var(--border); stroke-width: 5; }
+.progress-ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset .45s;
+}
+.bar { height: 6px; background: color-mix(in srgb, var(--bg) 80%, var(--border)); border-radius: 4px; overflow: hidden; }
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 60%, #fff));
+  width: 0;
+  animation: barGrow 1.2s .3s forwards;
+}
+
+/* ── Shared init snippet (paste into <script>) ──
+document.querySelectorAll('.reveal').forEach(el => {
+  new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: .12 }).observe(el);
+});
+*/
+
+:root{--bg:#e8e4d8;--surface:#f3efe5;--border:#c9c2b4;--text:#302d27;--muted:#686258;--accent:#a34825;--good:#49684e;--warn:#815d21;--bad:#973c31;--serif:"Songti TC","Noto Serif TC","PMingLiU",Georgia,serif;--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang TC",sans-serif;--mono:"SFMono-Regular",Consolas,monospace}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.8 var(--sans)}button,input,select{font:inherit}button,a{ -webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{cursor:pointer;color:inherit}button:disabled{cursor:default}button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible{outline:3px solid var(--accent);outline-offset:5px}img{max-width:100%;display:block}h1,h2,h3,p,figure{margin:0}h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.35}p+p{margin-top:1em}button{border:0;background:none}[hidden]{display:none!important}.wrap{width:min(1120px,calc(100% - 96px));margin:auto}.mono,.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.12em}.eyebrow{color:var(--muted)}.accent{color:var(--accent)}.skip{position:fixed;top:-70px;left:12px;z-index:1000;background:var(--text);color:var(--bg);padding:12px}.skip:focus{top:8px}.site-nav{position:sticky;top:0;z-index:40;background:#e8e4d8ed;backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}.nav-inner{display:flex;align-items:center;justify-content:space-between;min-height:85px;gap:20px}.brand{font-family:Georgia,var(--serif);font-weight:700;font-size:20px;white-space:nowrap}.brand em{font-style:normal;color:var(--accent)}.nav-links{display:flex;align-items:center;gap:32px;font-size:14px}.nav-links a:hover{color:var(--accent)}.nav-links .external{border-left:1px solid var(--border);padding-left:30px}.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:40px;align-items:center;min-height:590px;padding:65px 0 55px}.hero h1{font-size:clamp(50px,5.7vw,78px);letter-spacing:-.035em;line-height:1.32;margin:25px 0}.hero .intro{color:var(--muted);max-width:420px;line-height:2}.hero-actions{display:flex;align-items:center;gap:28px;margin-top:35px}.button{display:inline-flex;align-items:center;justify-content:center;gap:30px;min-height:48px;padding:10px 25px;border-radius:30px;background:var(--text);color:var(--surface);font-size:14px;transition:background .2s,transform .2s}.button:hover{background:var(--accent);transform:translateY(-2px)}.text-link{border-bottom:1px solid var(--text);padding-bottom:3px;font-size:14px}.compass-art{position:relative;display:grid;place-items:center;aspect-ratio:1}.compass-art svg{width:100%;height:auto;overflow:visible}.compass-art .rings{stroke:var(--muted);stroke-width:.75;opacity:.38;fill:none}.compass-art .star{fill:var(--accent);transform-origin:240px 240px;transition:transform 1s ease}.compass-art:hover .star{transform:rotate(12deg)}.compass-center{position:absolute;inset:24%;border-radius:50%;background:none;font:12px var(--mono);color:transparent}.compass-center:focus-visible{outline-offset:20px}.compass-caption{position:absolute;bottom:6px;text-align:center;font-size:12px;color:var(--muted)}.compass-caption strong{display:block;color:var(--accent);font-family:var(--serif);font-size:19px;margin-bottom:8px}.compass-art.is-open .star{transform:rotate(45deg)}.compass-art.is-open .compass-caption{max-width:350px}.section-rule{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--text);padding:17px 0;font:12px var(--mono);letter-spacing:.1em}.section{padding:62px 0}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:32px}.section-heading h2{font-size:38px}.section-heading p{color:var(--muted);font-size:14px}.feature{display:grid;grid-template-columns:1.2fr 1fr;gap:54px;align-items:center;margin:22px 0 20px}.feature-image{overflow:hidden;position:relative}.feature-image img{width:100%;aspect-ratio:1.5;object-fit:cover;filter:saturate(.65);transition:transform .7s}.feature-image:hover img{transform:scale(1.025)}.photo-label{position:absolute;bottom:16px;left:16px;background:var(--bg);padding:5px 12px;font:11px var(--mono)}.feature h2{font-size:45px;margin:16px 0 22px}.feature p{color:var(--muted);font-size:16px;line-height:2}.feature .text-link{display:inline-block;margin-top:26px}.tag{color:var(--accent);font-size:12px}.archive{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.filter-bar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:0 0 24px;border-bottom:1px solid var(--border)}.pills{display:flex;flex-wrap:wrap;gap:8px}.pill{border:1px solid var(--border);border-radius:24px;padding:7px 17px;font-size:13px;min-height:40px;transition:background .2s}.pill.active{background:var(--text);color:var(--surface);border-color:var(--text)}.pill:hover{border-color:var(--accent)}.year-filter{font-size:13px}.year-filter select{background:transparent;border:0;border-bottom:1px solid var(--border);margin-left:8px;padding:8px}.result-count{font:11px var(--mono);color:var(--muted);padding:18px 0}.note-row{display:grid;grid-template-columns:94px 1fr 175px;gap:26px;align-items:start;border-top:1px solid var(--border);padding:30px 0;transition:transform .25s,border-color .25s}.note-row:hover{transform:translateY(-2px);border-color:var(--accent)}.note-year{font:28px Georgia,serif;color:var(--accent)}.note-copy h3{font-size:28px;margin:7px 0}.note-copy h3 a:hover{color:var(--accent)}.note-row img{width:175px;height:125px;object-fit:cover;filter:saturate(.65)}.note-copy time{font:11px var(--mono);color:var(--muted)}details{font-size:14px}summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;min-height:40px;color:var(--muted)}summary::-webkit-details-marker{display:none}summary::after{content:'＋';font-size:17px;transition:transform .2s}details[open]>summary::after{transform:rotate(45deg)}details p{color:var(--muted);padding:8px 0 12px;line-height:1.9}details .text-link{font-size:13px}.practice{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:80px 0}.practice h2{font-size:40px;margin:16px 0 22px}.practice p{color:var(--muted)}.countdown{border:1px solid var(--border);padding:35px;text-align:center;position:relative}.countdown .digit{font:110px/1.2 Georgia,serif;color:var(--accent)}.countdown .tick-line{display:flex;justify-content:center;gap:22px;margin:15px 0 24px}.tick-line i{height:1px;width:25px;background:var(--border)}.tick-line i.lit{background:var(--accent)}.countdown output{display:block;min-height:30px;font-size:14px;margin-bottom:18px}.countdown .reset-count{display:block;margin:15px auto 0;font-size:12px;text-decoration:underline;min-height:30px}.about{background:var(--text);color:var(--bg);padding:75px 0}.about-inner{display:grid;grid-template-columns:230px 1fr;gap:80px;align-items:center}.about img{width:230px;height:290px;object-fit:cover;filter:saturate(.65)}.about h2{font-size:36px;margin:12px 0 24px}.about p{color:#d0c9bd;line-height:2}.about .eyebrow{color:#c2b8a6}.about-links{display:flex;gap:24px;margin-top:26px;flex-wrap:wrap}.about-links a{border-bottom:1px solid #8c8170;font-size:13px}.about details{margin-top:20px;border-top:1px solid #635c50;padding-top:10px}.about summary{color:var(--bg)}.about details p{font-size:14px}.site-footer{padding:32px 0}.footer-inner{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.provenance{font:10px var(--mono);overflow-wrap:anywhere;margin-top:16px;color:var(--muted)}.reading-progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0;z-index:100}.article-header{padding:65px 0 40px;max-width:850px}.article-header h1{font-size:clamp(38px,4.6vw,62px);margin:20px 0 18px}.article-header .original-title{font:17px Georgia,serif;font-style:italic;color:var(--muted);margin-bottom:18px}.article-grid{display:grid;grid-template-columns:200px minmax(0,740px);gap:55px;justify-content:space-between;align-items:start;padding-bottom:65px}.article-sidebar{position:sticky;top:110px}.article-sidebar summary{font-size:12px;font-family:var(--mono)}.article-toc{display:grid;gap:12px;padding:15px 0;font-size:13px}.article-toc a{border-left:1px solid var(--border);padding-left:14px;color:var(--muted);line-height:1.6}.article-toc a:hover,.article-toc a.active{color:var(--accent);border-left:2px solid var(--accent)}.reading-tools{border-top:1px solid var(--border);margin-top:20px;padding-top:16px}.reading-tools .pills{margin-top:10px}.reading-tools .pill{font-size:12px;padding:5px 14px}.article-body{font-family:var(--sans);font-size:18px;line-height:2.15;overflow-wrap:anywhere}.article-body.large{font-size:21px}.article-body h2{font-size:29px;margin:55px 0 24px;scroll-margin-top:110px;line-height:1.6}.article-body p{margin:24px 0}.article-body figure{margin:30px 0}.article-body img{width:100%;max-height:610px;object-fit:contain;background:#ded8cc}.article-body .article-cover img{max-height:450px;object-fit:cover}.article-body figcaption{font-size:12px;line-height:1.9;color:var(--muted);margin-top:12px}.article-body blockquote{margin:36px 0;border-left:2px solid var(--accent);padding:12px 26px;font-family:var(--serif);font-size:24px;color:var(--accent);line-height:1.8}.compass-widget{padding:28px;border:1px solid var(--border);background:var(--surface);margin:30px 0}.compass-widget__label{font:12px var(--mono);color:var(--muted)}.compass-widget__quote{font-family:var(--serif);color:var(--accent);font-size:23px}.compass-widget__toggle{border-bottom:1px solid var(--text);padding:5px 0;font-size:13px}.compass-widget__note{font-size:15px}.article-bottom{border-top:1px solid var(--border);padding:32px 0;display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap}.fade-in{animation:fadeUp .7s both}.empty{padding:25px 0;color:var(--muted)}
+@media(max-width:900px){.wrap{width:calc(100% - 56px)}.hero{gap:10px;min-height:500px}.hero h1{font-size:clamp(38px,5vw,54px)}.compass-caption{bottom:-18px}.feature{gap:30px}.feature h2{font-size:36px}.practice{gap:35px}.article-grid{grid-template-columns:160px minmax(0,1fr);gap:30px}.about-inner{gap:45px}.nav-links{gap:20px}}
+@media(max-width:620px){html{scroll-padding-top:100px}.wrap{width:calc(100% - 40px)}.nav-inner{min-height:76px;gap:8px}.brand{font-size:17px}.nav-links{gap:16px;font-size:12px}.nav-links .external{display:none}.hero{grid-template-columns:1fr;padding:40px 0 30px;gap:25px}.hero h1{font-size:clamp(32px,10.4vw,51px)}.hero .intro{font-size:15px}.hero-actions{margin-top:26px}.compass-art{width:80%;max-width:340px;justify-self:center}.compass-caption{bottom:0}.compass-caption strong{font-size:17px}.hero .eyebrow{font-size:10px}.section{padding:38px 0}.section-heading{display:block}.section-heading h2{font-size:31px}.section-heading p{margin-top:10px}.section-rule{font-size:10px}.feature{grid-template-columns:1fr;gap:26px}.feature h2{font-size:35px;margin-top:12px}.feature .text-link{margin-top:18px}.note-row{grid-template-columns:1fr 85px;gap:14px;position:relative;padding-top:44px}.note-year{position:absolute;top:17px;left:0;font-size:17px}.note-row img{width:85px;height:90px}.note-copy h3{font-size:23px}.note-copy .tag{font-size:10px}.pill{padding:6px 13px}.practice{grid-template-columns:1fr;gap:30px;padding:45px 0}.practice h2{font-size:33px}.countdown{padding:24px}.about{padding:45px 0}.about-inner{grid-template-columns:1fr;gap:28px}.about img{width:140px;height:175px}.about h2{font-size:32px}.article-header{padding-top:36px}.article-header h1{font-size:38px}.article-grid{display:flex;flex-direction:column;gap:24px}.article-sidebar{position:static;width:100%;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0}.article-toc{grid-template-columns:1fr 1fr}.reading-tools{display:flex;align-items:center;gap:15px;margin-top:8px;padding-top:10px}.reading-tools .pills{margin:0}.article-body{font-size:17px;line-height:2}.article-body blockquote{font-size:21px;padding:10px 18px}.article-body h2{font-size:25px;margin-top:40px}.article-body.large{font-size:20px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+@media print{.site-nav,.article-sidebar,.reading-progress,.article-bottom,.hero-actions,.countdown{display:none}body{background:white}.wrap{width:100%}.article-grid{display:block}.article-body{font-size:12pt}.article-body img{max-height:350px}.article-body h2{break-after:avoid}}
+</style></head><body class="with-grain">
+<a href="#main" class="skip">跳到主要內容</a><div class="reading-progress" aria-hidden="true"></div>
+<header class="site-nav"><nav class="wrap nav-inner" aria-label="主要導覽"><a class="brand" href="index.html">LEON <em>／</em> 手記</a><div class="nav-links"><a href="index.html#notes">手記</a><a href="index.html#practice">五秒練習</a><a href="index.html#about">關於我</a><a class="external" href="https://neoleon.in/">研究與作品 ↗</a></div></nav></header>
+<main id="main" class="wrap"><header class="article-header fade-in"><a class="eyebrow" href="index.html#notes">← 回到手記收藏</a><h1>找到我的北極星</h1><p class="original-title">Finding My North Star</p><p class="eyebrow"><time datetime="2025-01-04">2025-01-04</time> ／ 自我探索・人類圖</p></header>
+<div class="article-grid"><aside class="article-sidebar"><details open><summary>這篇的段落</summary><nav class="article-toc" aria-label="文章目錄"><a href="#sec-workshop">工作坊</a><a href="#sec-compass">Life Compass</a><a href="#sec-humandesign">人類圖</a><a href="#sec-mission">使命</a></nav></details><div class="reading-tools"><p class="eyebrow">閱讀字級</p><div class="pills" role="group" aria-label="閱讀字級"><button class="pill active" data-size="normal" aria-pressed="true">標準</button><button class="pill" data-size="large" aria-pressed="false">放大</button></div></div></aside><article class="article-body"><blockquote>今天發生的一切，將至今所有懷疑沮喪都做一個總結。</blockquote>
+
+  <figure class="article-cover">
+    <img src="assets/images/northstar.png" alt="Finding My North Star" loading="lazy">
+  </figure>
+
+  <h2 id="sec-workshop">工作坊</h2>
+  <p>早上，我參加了一個線上工作坊，是由Ali Abdaal舉辦的2024年度回顧，內容圍繞著回顧2024年的點點滴滴，並藉由這些回顧來探索2025年的可能性；在這個過程中，我感受到一種特別的力量，好像透過線上工作坊這個管道，大家一起做這些練習的能量，也輾轉傳遞到了我身上。每一道回顧的題目，無論是「今年發生的開心的事」、「難過的事」、「感謝的事」、還是「挑戰的事」，看著大家的回覆，我都感受得非常深刻，內心不斷被觸動著。</p>
+
+  <h2 id="sec-compass">Life Compass</h2>
+  <div class="compass-widget" id="compassWidget">
+    <div class="compass-widget__label">Life Compass · North Star</div>
+    <p class="compass-widget__quote">用愛與真誠，真實且善良地與世界連結，成為那個傳遞溫暖的人。</p>
+    <button type="button" class="compass-widget__toggle" id="compassToggle" data-disclosure aria-expanded="false" aria-controls="compass-note">為什麼是這句話？</button>
+    <p class="compass-widget__note" id="compass-note" hidden>墓碑練習與身體反應同時確認：不是功成名就，而是把愛與善良傳遞出去——這句話從此成為可指向的北極星。</p>
+  </div>
+  <p>其中有一道題目要我們製作一個 <strong>Life Compass</strong>，Ali 用「北極星」來形容這個概念——這些練習的目的，就是讓我們的手指可以不斷地嘗試去指出那顆永恆不變的北極星；而那顆北極星，代表著我們的 <em>人生使命</em>。</p>
+
+  <p>提到人生使命，這其實是我長期以來一直努力尋找的答案；我曾經用各種工具、各種方法問自己：「<em>我到底想要做什麼？我的使命是什麼？我想要在這個世界上留下什麼？想要完成什麼？</em>」每當我得出一個結論時，內心又會浮現出一絲懷疑：「<em>這真的是確定了嗎？這真會是我人生當中不管發生什麼意外或雜音干擾，我想完成的使命嗎？</em>」那種似是而非的感覺，讓我徘徊在自信與懷疑之間。</p>
+
+  <h2 id="sec-humandesign">人類圖</h2>
+  <p>直到最近，我重新看了一次 <strong>人類圖</strong>，我發現，根據我的人類圖，我的 <strong>輪迴交叉（Incarnation Cross）是右角度交叉之伊甸園4（11/12 | 6/36）</strong>；在人類圖中，輪迴交叉描述人生使命、核心主題，以及如何在生活中展現自己的獨特天賦，它是人在這一生中要學習和實現的主要課題，既包括內在動機，也包括如何對外在世界產生影響。而我的右角度輪迴交叉屬於「個人輪迴交叉」，意味著人生重心會較偏向個人成長，而不是直接服務他人或集體目標，所以我的人生使命更像是一段自我發現的旅程，透過自己的體驗和學習來找到意義；而伊甸園則象徵著「真實與和諧」、「情感的探索」和「回歸內心的純粹」。一句話來說，我的使命有「<strong>探索純真與和諧，並將衝突與體驗轉化為靈感，分享給他人</strong>」的意涵。</p>
+
+  <h2 id="sec-mission">使命</h2>
+  <p>回到今天的工作坊，其中有一題問道：「<em>假設你現在一百歲，你一切人生的各種方面都已經很美好了，當你走到人生的終點，站在自己的墓碑前，你的悼詞會是什麼？</em>」當我開始回答這個問題時，我的情緒忽然洶湧而至，眼淚止不住地滑落，身體背後也止不住地顫抖；我突然明白，這些年來，我不斷地在尋找的，不就是這個答案嗎？</p>
+
+  <p>我在回答中說著：「<strong>Leon不在乎是否非常成功，或者達到什麼功成名就的成就，Leon希望我們周遭的人，都可以用愛與真誠去對待那些受傷的人們，把這份愛不斷地傳遞、傳播出去，用善良去面對這個世界。</strong>」我也希望，我在我的工作，或我在做的任何事情上，都能朝著這個方向前進。</p>
+
+  <p>當我把這些話寫下來的時候，我的身體和情緒都給了我一個明確的回應，彷彿在告訴我：</p>
+
+  <blockquote><strong>「就是它了！」</strong></blockquote>
+
+  <p>這句話在心中產生巨大的回響，彷彿這幾年來，經歷的那些高峰與低谷，那些掙扎與困惑，所有的一切，似乎都是為了今天這一刻，讓我明白：我的人生使命，就是「<strong>用愛與真誠，真實且善良地與世界連結，成為那個傳遞溫暖的人。</strong>」；我感覺，這個答案終於安穩地落在了我的心上。</p>
+
+  <p>在最後，我對自己說：未來的每一天，無論我使用什麼工具、無論我選擇什麼道路，我希望我的每一個行動、每一個想法，都能夠將我的手指，指向那顆「北極星」——將愛、真誠與善良，真實地傳達給這個世界。</p></article></div><nav class="article-bottom" aria-label="其他手記"><a href="index.html#notes">← 全部手記</a><a href="countdown-from-five.html">倒數五秒 ↗</a><a href="the-year-i-learned-to-let-go.html">學會放下的那一年 ↗</a></nav></main>
+<footer class="site-footer"><div class="wrap"><div class="footer-inner"><span>© 2026 邱聖傑 Leon Chiu</span><span>生活・研究・自己</span><a href="#main">回到頁首 ↑</a></div><p class="provenance">derived_from: <a href="content/articles.json">content/articles.json</a> · <a href="content/provenance.json">來源紀錄</a></p></div></footer>
+<script>'use strict';
+function applyFilter() {
+  const topic = document.querySelector('[data-filter].active')?.dataset.filter || 'all';
+  const year = document.querySelector('#year-filter')?.value || 'all';
+  let count = 0;
+  document.querySelectorAll('[data-topics]').forEach(row => {
+    row.hidden = !((topic === 'all' || row.dataset.topics.split('|').includes(topic)) && (year === 'all' || row.dataset.year === year));
+    if (!row.hidden) count++;
+  });
+  const status = document.querySelector('#result-count');
+  if (status) status.textContent = `顯示 ${count} 篇手記`;
+  const empty = document.querySelector('#empty');
+  if (empty) empty.hidden = count !== 0;
+}
+document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
+  document.querySelectorAll('[data-filter]').forEach(item => {
+    item.classList.toggle('active', item === button);
+    item.setAttribute('aria-pressed', String(item === button));
+  });
+  applyFilter();
+}));
+document.querySelector('#year-filter')?.addEventListener('change', applyFilter);
+function toggleCard(button) {
+  const target = document.getElementById(button.getAttribute('aria-controls'));
+  if (!target) return;
+  const open = button.getAttribute('aria-expanded') !== 'true';
+  button.setAttribute('aria-expanded', String(open));
+  target.hidden = !open;
+}
+document.querySelectorAll('[data-disclosure]').forEach(button => button.addEventListener('click', () => toggleCard(button)));
+const compass = document.querySelector('.compass-center');
+compass?.addEventListener('click', () => {
+  const open = compass.getAttribute('aria-expanded') !== 'true';
+  compass.setAttribute('aria-expanded', String(open));
+  compass.closest('.compass-art').classList.toggle('is-open', open);
+  const caption = document.getElementById('compass-caption');
+  caption.innerHTML = open ? '<strong>用愛與真誠，真實且善良地與世界連結。</strong><span>摘自〈找到我的北極星〉</span>' : '<strong>我的北極星</strong><span>點一下星芒，讀一句提醒</span>';
+});
+const countStart = document.querySelector('#count-start');
+if (countStart) {
+  const digit = document.querySelector('#count-digit');
+  const output = document.querySelector('#count-status');
+  const ticks = [...document.querySelectorAll('.tick-line i')];
+  let timer = null;
+  function reset() {
+    clearInterval(timer); timer = null;
+    digit.textContent = '5'; output.textContent = '先想一件，現在就能開始的小事。';
+    countStart.disabled = false; countStart.textContent = '開始倒數 ↗';
+    ticks.forEach(tick => tick.classList.remove('lit'));
+  }
+  countStart.addEventListener('click', () => {
+    clearInterval(timer);
+    const deadline = Date.now() + 5000;
+    countStart.disabled = true; countStart.textContent = '倒數中';
+    output.textContent = '把注意力，放回眼前這件事。';
+    timer = setInterval(() => {
+      const remaining = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+      digit.textContent = String(remaining);
+      ticks.forEach((tick, index) => tick.classList.toggle('lit', index >= remaining));
+      if (!remaining) {
+        clearInterval(timer); timer = null;
+        output.textContent = '現在，開始做。'; countStart.disabled = false; countStart.textContent = '再倒數一次 ↗';
+      }
+    }, 100);
+    digit.textContent = '5'; ticks.forEach(tick => tick.classList.remove('lit'));
+  });
+  document.querySelector('#count-reset').addEventListener('click', reset);
+}
+function switchMetric(button) {
+  document.querySelector('.article-body')?.classList.toggle('large', button.dataset.size === 'large');
+  document.querySelectorAll('[data-size]').forEach(item => {
+    item.classList.toggle('active', item === button);
+    item.setAttribute('aria-pressed', String(item === button));
+  });
+}
+document.querySelectorAll('[data-size]').forEach(button => button.addEventListener('click', () => switchMetric(button)));
+const progress = document.querySelector('.reading-progress');
+const article = document.querySelector('.article-body');
+if (progress && article) {
+  const update = () => {
+    const start = article.offsetTop;
+    const distance = article.offsetHeight - window.innerHeight;
+    const fraction = distance <= 0 ? 1 : Math.max(0, Math.min(1, (window.scrollY - start) / distance));
+    progress.style.width = `${fraction * 100}%`;
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  window.addEventListener('load', update);
+  update();
+}
+</script></body></html>

@@ -1,0 +1,66 @@
+{
+  "extracted_on": "2026-09-13",
+  "repository": "https://github.com/chocolatetoast-chiu/leon-portfolio",
+  "articles": [
+    {
+      "source": "posts/articles/countdown-from-five.html",
+      "sha256": "b82f85e247cae603ad027726f541b278721823aa10933deca8b9bccaf86f8b7d",
+      "destination": "countdown-from-five.html",
+      "body_text_sha256": "af04b61ec578738e298f3f54b161e5c2199afd576df2b888072a4d22bbb946bf"
+    },
+    {
+      "source": "posts/articles/finding-my-north-star.html",
+      "sha256": "49713f09e8651f43ea0650d9b462e18a894db9a03ab849b227d7c1b9612cd9a1",
+      "destination": "finding-my-north-star.html",
+      "body_text_sha256": "a176a74c2fa2407571bfa057c72dc63f004241e68dbbd0009492ce7bebffce61"
+    },
+    {
+      "source": "posts/articles/the-year-i-learned-to-let-go.html",
+      "sha256": "581dcee10f7facb7c66a7290c1942325824de79cb9481623a0ed95865de2a54b",
+      "destination": "the-year-i-learned-to-let-go.html",
+      "body_text_sha256": "b14db8f548371c057394e6b64674a7df0e3f826854e52013c06a3fe4c0d37d12"
+    }
+  ],
+  "images": [
+    {
+      "path": "assets/images/Seattlefriend.png",
+      "sha256": "16d4aec3a9769c1a97f5186586a49c97cd7eb75fc0ef048e04f901db22384a8f"
+    },
+    {
+      "path": "assets/images/conferenceroom.png",
+      "sha256": "d14be158a390c8d6934646e2052c93f924782ad65f2e43c83c4c5189e97bc642"
+    },
+    {
+      "path": "assets/images/family_japan.jpeg",
+      "sha256": "c12b5ebeaeb2d1a2bdf4f9967b7b2d3ca4285f70d78ea4eba27c89d4e835ca24"
+    },
+    {
+      "path": "assets/images/firework.png",
+      "sha256": "82c685b9349340d133af8c4c300f95fd2e0e3fedc833e2d84de0c22250500196"
+    },
+    {
+      "path": "assets/images/northstar.png",
+      "sha256": "e9d7b0b766e4a46ff4c3287c0243fa7d319542541ee2417180ff5d8435b9dddf"
+    },
+    {
+      "path": "assets/images/posts/countdown-keyboard.jpg",
+      "sha256": "3b13ce81f46d49913c44e9423bd95a7c131722aea3b8d4ae34c425f87ae8a058"
+    },
+    {
+      "path": "assets/images/posts/countdown-research.jpg",
+      "sha256": "9ac137dd3e926f944b91900355f983797acbc28472ae8792c76b826e48b21edf"
+    },
+    {
+      "path": "assets/images/posts/countdown-sticky.jpg",
+      "sha256": "fd5063b3952607afa2842ff008997664277eb67dd7c53b1df695fae646978349"
+    },
+    {
+      "path": "assets/images/smilingme.jpeg",
+      "sha256": "d3a5cb34990fad9505f6cb9e32e35b3920dcaebd487ac17a8df64cbdf1a6b5ee"
+    }
+  ],
+  "about_sources": [
+    "about.html",
+    "assets/js/about-page.js"
+  ]
+}
