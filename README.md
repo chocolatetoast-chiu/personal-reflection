@@ -1,5 +1,7 @@
 # Leon 的生活手記
 
+[開啟網站](https://chocolatetoast-chiu.github.io/personal-reflection/)
+
 繁體中文的個人 reflection 網站。暖米色、陶土橘與紙張質感，收錄三篇完整文章、九張原始配圖及簡短個人介紹。
 
 ## 閱讀

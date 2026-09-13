@@ -13,7 +13,7 @@
 - [x] 提取原文、圖片及來源清單。
 - [x] 建立首頁、文章頁與互動元件。
 - [x] 原文比對、連結檢查、750/1200px 與手機瀏覽器驗證；獨立 code review。
-- [ ] 同步 GitHub，啟用 Pages 並核對上線結果。
+- [x] 同步 GitHub，啟用 Pages 並核對上線結果。
 
 ## Design
 暖米 #e8e4d8、炭黑 #302d27、陶土橘 #a34825；中文襯線標題、等寬日期。以真實照片搭配北極星刻度圖，提供主題／年份篩選、摘要摺疊、文章目錄、閱讀進度與五秒倒數。
@@ -26,4 +26,10 @@
 - 文章正文保留當年的敘述，不改成當前研究或健康建議。
 
 ## Publishing
-已建立公開 repository `chocolatetoast-chiu/personal-reflection`；同步與 Pages 上線核對中。
+已同步公開 repository [personal-reflection](https://github.com/chocolatetoast-chiu/personal-reflection)，網站版本 `e016419`。
+
+公開網站：[Leon 的生活手記](https://chocolatetoast-chiu.github.io/personal-reflection/)。Pages 使用 `main` 根目錄，HTTPS 開啟。四頁皆 HTTP 200，逐頁 SHA-256 與本機完全一致。
+
+## Gotchas
+- 原始圖片共約 30 MB；預設 HTTP chunked push 曾回報 400。單次使用 `git -c http.postBuffer=52428800 push` 成功；未改全域 Git 設定。
+- 無執行期依賴；離線開啟仍可閱讀與互動，外部研究網站／Email 連結需網路。
